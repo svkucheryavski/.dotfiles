@@ -10,6 +10,17 @@ eval "$(starship init zsh)"
 # this is needed for VNC
 export DISPLAY=:1
 
+
+# if yazi is called with "y" it will change local directory on quit
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
 # run commands specific for local computer
 if [ -f ~/.zshrc_local ]; then
     . ~/.zshrc_local
