@@ -17,11 +17,11 @@ fi
 
 # check if the .dotfiles repo has changed on remote and show message if so
 check_git_status() {
-    local repo_path="$HOME/.dotefiles"
-    if [ -d "$repo_path/.git" ]; then
+    local repo_path="$HOME"
+    if [ -d "$repo_path/.dotfiles" ]; then
         cd "$repo_path" || return
-        if ! git status -uno | grep -q "Your branch is up to date"; then
-            echo -e "\e[31mWARNING: Local repo is out of sync with remote!\e[0m"
+        if ! home status -uno | grep -q "Your branch is up to date"; then
+            echo -e "\e[31mWARNING: Local .dotfiles repo is out of sync with remote!\e[0m"
         fi
     fi
 }
