@@ -1,6 +1,9 @@
 # Alis to track and syn changes in conf files
 alias home='git --work-tree=$HOME --git-dir=$HOME/.dotfiles'
 
+# add local bin directory to path
+export PATH="$HOME/bin:$PATH"
+
 # add starship support 
 eval "$(starship init zsh)"
 
